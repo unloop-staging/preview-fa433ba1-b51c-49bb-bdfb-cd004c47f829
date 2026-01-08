@@ -1,0 +1,484 @@
+// Generated Screen Components
+
+import { SmallAppBar, FilledButton, OutlineButton, Switch, Slider, ScrollView } from "@material";
+import { MetricCard, MetricData } from "../components/index.slint";
+import { StatusIndicator, StatusLevel } from "../components/index.slint";
+import { ValueStepper, ValueStepperCompact } from "../components/index.slint";
+import { AppData } from "data.slint";
+
+export component HomeScreen inherits Rectangle {
+    in-out property <AppData> data;
+    
+    callback refresh-clicked();
+    callback forecast-clicked();
+    
+    background: transparent;
+    
+    VerticalLayout {
+        SmallAppBar {
+            title: "Weather";
+        }
+        
+        Rectangle {
+            vertical-stretch: 1;
+            
+            ScrollView {
+                VerticalLayout {
+                    padding: 16px;
+                    spacing: 24px;
+                    
+                    Text {
+                        text: "Overview";
+                        font-size: 14px;
+                        font-weight: 500;
+                        color: #9E9E9E;
+                    }
+                    
+                    HorizontalLayout {
+                        spacing: 12px;
+                        
+                        MetricCard {
+                            data: {
+                                label: "Temperature",
+                                value: data.current-temp,
+                                unit: "°F",
+                                trend: "",
+                                trend-value: ""
+                            };
+                        }
+                        MetricCard {
+                            data: {
+                                label: "Humidity",
+                                value: data.humidity,
+                                unit: "%",
+                                trend: "",
+                                trend-value: ""
+                            };
+                        }
+                        MetricCard {
+                            data: {
+                                label: "Pressure",
+                                value: data.pressure,
+                                unit: "inHg",
+                                trend: "",
+                                trend-value: ""
+                            };
+                        }
+                        MetricCard {
+                            data: {
+                                label: "Wind Speed",
+                                value: data.wind-speed,
+                                unit: "mph",
+                                trend: "",
+                                trend-value: ""
+                            };
+                        }
+                    }
+
+                    Text {
+                        text: "Status";
+                        font-size: 14px;
+                        font-weight: 500;
+                        color: #9E9E9E;
+                    }
+                    
+                    Rectangle {
+                        background: #2A2A2A;
+                        border-radius: 12px;
+                        
+                        VerticalLayout {
+                            padding: 12px;
+                            spacing: 12px;
+                            
+                            HorizontalLayout {
+                                alignment: space-between;
+                                
+                                Text {
+                                    text: "Sensors";
+                                    font-size: 14px;
+                                    color: #E0E0E0;
+                                }
+                                
+                                StatusIndicator {
+                                    level: StatusLevel.ok;
+                                    label: data.sensor-status;
+                                }
+                            }
+                            HorizontalLayout {
+                                alignment: space-between;
+                                
+                                Text {
+                                    text: "WiFi";
+                                    font-size: 14px;
+                                    color: #E0E0E0;
+                                }
+                                
+                                StatusIndicator {
+                                    level: StatusLevel.ok;
+                                    label: data.wifi-status;
+                                }
+                            }
+                        }
+                    }
+
+                    HorizontalLayout {
+                        spacing: 12px;
+                        
+                        FilledButton {
+                            text: "Refresh";
+                            clicked => { refresh-clicked(); }
+                        }
+                        OutlineButton {
+                            text: "Forecast";
+                            clicked => { forecast-clicked(); }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+export component DetailedScreen inherits Rectangle {
+    in-out property <AppData> data;
+    
+    callback export-clicked();
+    
+    background: transparent;
+    
+    VerticalLayout {
+        SmallAppBar {
+            title: "Detailed Weather";
+        }
+        
+        Rectangle {
+            vertical-stretch: 1;
+            
+            ScrollView {
+                VerticalLayout {
+                    padding: 16px;
+                    
+                    Text {
+                        text: "Detail View";
+                        font-size: 20px;
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+}
+
+export component SettingsScreen inherits Rectangle {
+    in-out property <AppData> data;
+    
+
+    
+    background: transparent;
+    
+    VerticalLayout {
+        SmallAppBar {
+            title: "Settings";
+        }
+        
+        Rectangle {
+            vertical-stretch: 1;
+            
+            ScrollView {
+                VerticalLayout {
+                    padding-top: 8px;
+                    padding-bottom: 24px;
+
+                    Rectangle {
+                        height: 48px;
+                        
+                        Text {
+                            x: 16px;
+                            text: "Units";
+                            font-size: 14px;
+                            font-weight: 500;
+                            color: #3AA1F5;
+                            vertical-alignment: center;
+                        }
+                    }
+                    
+                    Rectangle {
+                        background: #2A2A2A;
+                        
+                        VerticalLayout {
+                            Rectangle {
+                                height: 56px;
+                                
+                                HorizontalLayout {
+                                    padding-left: 16px;
+                                    padding-right: 16px;
+                                    
+                                    VerticalLayout {
+                                        horizontal-stretch: 1;
+                                        alignment: center;
+                                        
+                                        Text {
+                                            text: "Temperature";
+                                            font-size: 16px;
+                                            color: white;
+                                        }
+                                    }
+                                    
+                                }
+                            }
+                            Rectangle {
+                                height: 56px;
+                                
+                                HorizontalLayout {
+                                    padding-left: 16px;
+                                    padding-right: 16px;
+                                    
+                                    VerticalLayout {
+                                        horizontal-stretch: 1;
+                                        alignment: center;
+                                        
+                                        Text {
+                                            text: "Wind Speed";
+                                            font-size: 16px;
+                                            color: white;
+                                        }
+                                    }
+                                    
+                                }
+                            }
+                            Rectangle {
+                                height: 56px;
+                                
+                                HorizontalLayout {
+                                    padding-left: 16px;
+                                    padding-right: 16px;
+                                    
+                                    VerticalLayout {
+                                        horizontal-stretch: 1;
+                                        alignment: center;
+                                        
+                                        Text {
+                                            text: "Pressure";
+                                            font-size: 16px;
+                                            color: white;
+                                        }
+                                    }
+                                    
+                                }
+                            }
+                        }
+                    }
+
+                    Rectangle {
+                        height: 48px;
+                        
+                        Text {
+                            x: 16px;
+                            text: "Data Collection";
+                            font-size: 14px;
+                            font-weight: 500;
+                            color: #3AA1F5;
+                            vertical-alignment: center;
+                        }
+                    }
+                    
+                    Rectangle {
+                        background: #2A2A2A;
+                        
+                        VerticalLayout {
+                            Rectangle {
+                                height: 56px;
+                                
+                                HorizontalLayout {
+                                    padding-left: 16px;
+                                    padding-right: 16px;
+                                    
+                                    VerticalLayout {
+                                        horizontal-stretch: 1;
+                                        alignment: center;
+                                        
+                                        Text {
+                                            text: "Update Interval";
+                                            font-size: 16px;
+                                            color: white;
+                                        }
+                                    }
+                                    
+                                }
+                            }
+                            Rectangle {
+                                height: 56px;
+                                
+                                HorizontalLayout {
+                                    padding-left: 16px;
+                                    padding-right: 16px;
+                                    
+                                    VerticalLayout {
+                                        horizontal-stretch: 1;
+                                        alignment: center;
+                                        
+                                        Text {
+                                            text: "Enable Data Logging";
+                                            font-size: 16px;
+                                            color: white;
+                                        }
+                                    }
+                                    
+                                    Switch {
+                                        checked <=> data.data-logging;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    Rectangle {
+                        height: 48px;
+                        
+                        Text {
+                            x: 16px;
+                            text: "Display";
+                            font-size: 14px;
+                            font-weight: 500;
+                            color: #3AA1F5;
+                            vertical-alignment: center;
+                        }
+                    }
+                    
+                    Rectangle {
+                        background: #2A2A2A;
+                        
+                        VerticalLayout {
+                            Rectangle {
+                                height: 56px;
+                                
+                                HorizontalLayout {
+                                    padding-left: 16px;
+                                    padding-right: 16px;
+                                    
+                                    VerticalLayout {
+                                        horizontal-stretch: 1;
+                                        alignment: center;
+                                        
+                                        Text {
+                                            text: "Brightness";
+                                            font-size: 16px;
+                                            color: white;
+                                        }
+                                    }
+                                    
+                                    ValueStepperCompact {
+                                        value <=> data.brightness;
+                                        min: 0;
+                                        max: 100;
+                                        step: 10;
+                                        unit: "%";
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    Rectangle {
+                        height: 48px;
+                        
+                        Text {
+                            x: 16px;
+                            text: "System";
+                            font-size: 14px;
+                            font-weight: 500;
+                            color: #3AA1F5;
+                            vertical-alignment: center;
+                        }
+                    }
+                    
+                    Rectangle {
+                        background: #2A2A2A;
+                        
+                        VerticalLayout {
+                            Rectangle {
+                                height: 56px;
+                                
+                                HorizontalLayout {
+                                    padding-left: 16px;
+                                    padding-right: 16px;
+                                    
+                                    VerticalLayout {
+                                        horizontal-stretch: 1;
+                                        alignment: center;
+                                        
+                                        Text {
+                                            text: "WiFi Settings";
+                                            font-size: 16px;
+                                            color: white;
+                                        }
+                                    }
+                                    
+                                    Text {
+                                        text: "";
+                                        font-size: 14px;
+                                        color: #9E9E9E;
+                                        vertical-alignment: center;
+                                    }
+                                }
+                            }
+                            Rectangle {
+                                height: 56px;
+                                
+                                HorizontalLayout {
+                                    padding-left: 16px;
+                                    padding-right: 16px;
+                                    
+                                    VerticalLayout {
+                                        horizontal-stretch: 1;
+                                        alignment: center;
+                                        
+                                        Text {
+                                            text: "Sensor Calibration";
+                                            font-size: 16px;
+                                            color: white;
+                                        }
+                                    }
+                                    
+                                    Text {
+                                        text: "";
+                                        font-size: 14px;
+                                        color: #9E9E9E;
+                                        vertical-alignment: center;
+                                    }
+                                }
+                            }
+                            Rectangle {
+                                height: 56px;
+                                
+                                HorizontalLayout {
+                                    padding-left: 16px;
+                                    padding-right: 16px;
+                                    
+                                    VerticalLayout {
+                                        horizontal-stretch: 1;
+                                        alignment: center;
+                                        
+                                        Text {
+                                            text: "Version";
+                                            font-size: 16px;
+                                            color: white;
+                                        }
+                                    }
+                                    
+                                    Text {
+                                        text: data.version;
+                                        font-size: 14px;
+                                        color: #9E9E9E;
+                                        vertical-alignment: center;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
